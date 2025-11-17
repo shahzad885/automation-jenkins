@@ -15,15 +15,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/shahzad885/automation-jenkins.git'
             }
         }
-        
-        // We have removed the 'Install' and 'Build' stages
 
         stage('Deploy to Vercel') {
             steps {
                 // Use 'bat' for Windows
-                // This command will deploy your static files to production
+                // Use %VARIABLE% for Windows variable syntax
                 bat '''
-                  npx vercel --prod --token $VERCEL_TOKEN_SECRET --scope $VERCEL_ORG_ID_SECRET --yes --force
+                  npx vercel --prod --token %VERCEL_TOKEN_SECRET% --scope %VERCEL_ORG_ID_SECRET% --yes --force
                 '''
             }
         }
